@@ -8,3 +8,9 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
+
+Lint/MissingSuper:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
