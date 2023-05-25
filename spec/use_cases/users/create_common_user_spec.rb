@@ -20,7 +20,7 @@ RSpec.describe Users::CreateCommonUser do
       response = perform_usecase
 
       expect(response.data).to eq(
-        id: 1,
+        id: Users::Query.last[:id],
         created_at: Time.current,
         updated_at: Time.current,
         full_name: 'Rivelino Junior',
