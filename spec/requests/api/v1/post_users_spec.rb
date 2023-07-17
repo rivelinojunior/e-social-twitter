@@ -11,7 +11,7 @@ RSpec.describe 'POST /api/v1/users' do
     it 'returns a success response with the created user' do
       perform_request
 
-      user_created = Users::Query.last
+      user_created = Users::UserQuery.last
 
       expect(response.body).to eq({ user: user_created }.to_json)
     end

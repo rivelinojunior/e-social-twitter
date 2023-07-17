@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Users::CreateCommonUser do
+RSpec.describe Users::SignUpUser do
   subject(:perform_usecase) { described_class.new(params).call }
 
   before { freeze_time }
@@ -19,8 +19,8 @@ RSpec.describe Users::CreateCommonUser do
     it 'returns data from user created' do
       response = perform_usecase
 
-      expect(response.data).to eq(
-        id: Users::Query.last[:id],
+      expect(response.data).to have_attributes(
+        id: Users::UserQuery.last.id,
         created_at: Time.current,
         updated_at: Time.current,
         full_name: 'Rivelino Junior',
@@ -30,7 +30,7 @@ RSpec.describe Users::CreateCommonUser do
     end
 
     it 'increaces the number of users by 1' do
-      expect { perform_usecase }.to change(Users::Query, :count).by(1)
+      expect { perform_usecase }.to change(Users::UserQuery, :count).by(1)
     end
   end
 
@@ -50,7 +50,7 @@ RSpec.describe Users::CreateCommonUser do
     end
 
     it 'does not increace the number of users by 1' do
-      expect { perform_usecase }.not_to change(Users::Query, :count)
+      expect { perform_usecase }.not_to change(Users::UserQuery, :count)
     end
   end
 
@@ -70,7 +70,7 @@ RSpec.describe Users::CreateCommonUser do
     end
 
     it 'does not increace the number of users by 1' do
-      expect { perform_usecase }.not_to change(Users::Query, :count)
+      expect { perform_usecase }.not_to change(Users::UserQuery, :count)
     end
   end
 
@@ -90,7 +90,7 @@ RSpec.describe Users::CreateCommonUser do
     end
 
     it 'does not increace the number of users by 1' do
-      expect { perform_usecase }.not_to change(Users::Query, :count)
+      expect { perform_usecase }.not_to change(Users::UserQuery, :count)
     end
   end
 end

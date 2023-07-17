@@ -4,7 +4,7 @@ module Api
   module V1
     class UsersController < ApplicationController
       def create
-        response = ::Users::CreateCommonUser.new(user_params).call
+        response = ::Users::SignUpUser.new(user_params).call
 
         if response.success
           render json: { user: response.data }, status: :created
